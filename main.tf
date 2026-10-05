@@ -22,3 +22,9 @@ resource "aws_identitystore_user" "baris" {
     primary = true
   }
 }
+
+resource "aws_identitystore_group_membership" "baris_admins" {
+  identity_store_id = tolist(data.aws_ssoadmin_instances.main.identity_store_ids)[0]
+  group_id          = aws_identitystore_group.admins.group_id
+  member_id         = aws_identitystore_user.baris.user_id
+}
