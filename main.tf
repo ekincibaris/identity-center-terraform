@@ -41,3 +41,16 @@ resource "aws_ssoadmin_managed_policy_attachment" "admin" {
   managed_policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
   permission_set_arn = aws_ssoadmin_permission_set.admin.arn
 }
+
+data "aws_caller_identity" "current" {}
+
+resource "aws_ssoadmin_account_assignment" "admins" {
+  instance_arn       = tolist(data.aws_ssoadmin_instances.main.arns)[0]
+  permission_set_arn = aws_ssoadmin_permission_set.admin.arn
+
+  principal_type = "GROUP"
+  principal_id   = aws_identitystore_group.admins.group_id
+
+  target_type = "AWS_ACCOUNT"
+  target_id   = data.aws_caller_identity.current.account_id
+}
