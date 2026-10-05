@@ -5,3 +5,20 @@ resource "aws_identitystore_group" "admins" {
   display_name      = "Administrators"
   description       = "Full administrative access to AWS accounts"
 }
+
+resource "aws_identitystore_user" "baris" {
+  identity_store_id = tolist(data.aws_ssoadmin_instances.main.identity_store_ids)[0]
+
+  user_name    = "baris.ekinci"
+  display_name = "Baris Ekinci"
+
+  name {
+    given_name  = "Baris"
+    family_name = "Ekinci"
+  }
+
+  emails {
+    value   = "barekinci91+sso@gmail.com"
+    primary = true
+  }
+}
