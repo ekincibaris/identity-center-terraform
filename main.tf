@@ -28,3 +28,10 @@ resource "aws_identitystore_group_membership" "baris_admins" {
   group_id          = aws_identitystore_group.admins.group_id
   member_id         = aws_identitystore_user.baris.user_id
 }
+
+resource "aws_ssoadmin_permission_set" "admin" {
+  instance_arn     = tolist(data.aws_ssoadmin_instances.main.arns)[0]
+  name             = "AdministratorAccess"
+  description      = "Full admin access for the Administrators group"
+  session_duration = "PT4H"
+}
