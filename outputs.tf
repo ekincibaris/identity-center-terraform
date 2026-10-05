@@ -1,7 +1,7 @@
 output "instance_arn" {
-  value = tolist(data.aws_ssoadmin_instances.main.arns)[0]
+  value = local.instance_arn
 }
 
 output "identity_store_id" {
-  value = tolist(data.aws_ssoadmin_instances.main.identity_store_ids)[0]
+  value = local.identity_store_id
 }
