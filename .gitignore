@@ -7,3 +7,6 @@
 
 # Variable files, which may hold secrets
 *.tfvars
+
+# Saved plan files: contain config and state snapshot
+tfplan
