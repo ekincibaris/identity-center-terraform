@@ -1,0 +1,9 @@
+# Provider plugins downloaded by terraform init
+.terraform/
+
+# State files: the state and its backup
+*.tfstate
+*.tfstate.*
+
+# Variable files, which may hold secrets
+*.tfvars
